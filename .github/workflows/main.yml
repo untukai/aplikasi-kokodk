@@ -28,9 +28,6 @@ jobs:
       - name: Install Capacitor
         run: npm i @capacitor/core @capacitor/cli @capacitor/android
 
-      - name: Initialize Capacitor
-        run: npx cap init "UMKM KAR" com.example.umkmkar --web-dir=dist || echo "Capacitor already initialized"
-
       - name: Add Android platform
         run: npx cap add android || echo "Android platform already added"
 
@@ -58,4 +55,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: apk-debug
-          path: android/app/build/outputs/apk/debug/*.apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
