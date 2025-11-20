@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, ReactNode, useCallback } from 'react';
-import { User } from '../types';
+import { User, UserRole } from '../types';
 
 interface AuthContextType {
   user: User | null;
@@ -84,7 +84,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const newUserProfile: User = { 
       id: 1, // Dummy ID
       email, 
-      role: role as any, // Cast for simplicity as UserRole is broader
+      // FIX: Removed unnecessary type cast as types are now compatible.
+      role: role,
       createdAt: new Date().toISOString(),
       // FIX: Added dummy coins for new user login.
       coins: 1000,
