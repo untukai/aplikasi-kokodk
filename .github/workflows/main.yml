@@ -31,8 +31,8 @@ jobs:
       - name: Add Android platform
         run: npx cap add android || echo "Android platform already added"
 
-      - name: Copy web assets to native project
-        run: npx cap copy android
+      - name: Sync Capacitor project
+        run: npx cap sync android
 
       - name: Setup Java
         uses: actions/setup-java@v4
