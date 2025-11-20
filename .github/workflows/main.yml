@@ -34,6 +34,18 @@ jobs:
       - name: Sync Capacitor project
         run: npx cap sync android
 
+      - name: Set Android SDK versions in variables.gradle
+        run: |
+          if [ -f "android/variables.gradle" ]; then
+            echo "Updating compileSdkVersion and targetSdkVersion to 35 in android/variables.gradle"
+            sed -i.bak 's/compileSdkVersion = 34/compileSdkVersion = 35/g' android/variables.gradle
+            sed -i.bak 's/targetSdkVersion = 34/targetSdkVersion = 35/g' android/variables.gradle
+            echo "Content of android/variables.gradle after update:"
+            cat android/variables.gradle
+          else
+            echo "android/variables.gradle not found. Skipping SDK version update."
+          fi
+        
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
